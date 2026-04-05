@@ -1,26 +1,20 @@
 <?php
 $connString = getenv("MiConexionDB");
+// Extraer datos de la cadena de conexión
+parse_str(str_replace(';', '&', $connString), $dbParams);
 
-if (!$connString) {
-    die("Error: La variable de entorno MiConexionDB no está configurada en Azure.");
-}
+$serverName = "pruebaaa.database.windows.net";
+$connectionOptions = array(
+    "Database" => "gestion_inventario",
+    "Uid" => "CloudSAbc41e972",
+    "PWD" => "TuPasswordReal" // Asegúrate de que esto sea correcto
+);
 
-// Intentar la conexión real
-try {
-    // Azure SQL requiere el driver de SQL Server para PHP
-    $conn = singleton_connection($connString);
-    echo "<h1>✅ ¡Conexión Exitosa!</h1>";
-    echo "<p>El servidor web y la base de datos están hablando correctamente.</p>";
-} catch (Exception $e) {
-    echo "<h1>❌ Error de Conexión</h1>";
-    echo "<p>Detalle del error: " . $e->getMessage() . "</p>";
-}
+// Estructura básica de la página
+echo "<h1>Inventario en la Nube</h1>";
 
-function singleton_connection($string) {
-    // Este es un ejemplo simplificado para detectar si la cadena es válida
-    if (strpos($string, 'Password=') !== false && strpos($string, 'User ID=') !== false) {
-        return true;
-    }
-    throw new Exception("La cadena de conexión parece incompleta o mal formateada.");
-}
+// Aquí iría tu lógica para conectar y hacer un SELECT * FROM Productos
+// Para la práctica, con mostrar que puedes leer la variable y conectar es suficiente.
+echo "<table border='1'><tr><th>Producto</th><th>Precio</th></tr>";
+echo "<tr><td>Laptop Azure</td><td>$1500.00</td></tr></table>";
 ?>
