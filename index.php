@@ -1,17 +1,12 @@
-<? php
-echo "<h1>¡Servidor de Azure funcionando !< /
-h1>";
+<?php
+echo "<h1>¡Servidor de Azure funcionando!</h1>";
 
-// Intentar conectar a la base de datos
-usando la variable que configuramos
-$connString = getenv("MiConexionDB");
+// Intentar obtener la variable de entorno que configuramos en Azure
+$cadena_de_conexion = getenv("MiConexionDB");
 
-if ($connString) {
-echo "<p>La variable de conexión se
-detectó correctamente. </p>";
+if ($cadena_de_conexion) {
+    echo "<p>La variable de conexión se detectó correctamente.</p>";
 } else {
-echo "<p>Error: No se encuentra
-la variable 'MiConexionDB' en la
-configuración. </p>";
-
+    echo "<p>Error: No se encuentra la variable 'MiConexionDB' en la configuración de Azure.</p>";
+}
 ?>
